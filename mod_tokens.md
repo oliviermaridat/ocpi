@@ -12,11 +12,11 @@ With this cached information they know to which eMSP they can later send a CDR.
 
 ### 1.1 Push model
 
-When the MSP creates a new Token object they push it to the CPO by calling [PUT](#212-put-method) on the CPOs Tokens endpoint with the newly created Token object.
+When an eMSP creates a new Token object it pushes it to the CPO by calling [PUT](#212-put-method) on the CPOs Tokens endpoint with the newly created Token object.
 
-Any changes to Token in the eMSP system are send to the CPO system by calling, either the [PUT](#212-put-method) or the [PATCH](#213-patch-method) on the CPOs Tokens endpoint with the updated Token(s).
+Any change to a Token in the eMSP system is sent to the CPO system by calling, either the [PUT](#212-put-method) or the [PATCH](#213-patch-method) on the CPOs Tokens endpoint with the updated Token(s).
 
-When the eMSP invalidates a Token (deleting is not possible), the eMSP will send the updated Token (with the field: valid set to False, by calling, either the [PUT](#212-put-method) or the [PATCH](#213-patch-method) on the CPOs Tokens endpoint with the updated Token. 
+When the eMSP invalidates a Token (deleting is not possible), it sends the updated Token (with the field: valid set to False), by calling, either the [PUT](#212-put-method) or the [PATCH](#213-patch-method) on the CPOs Tokens endpoint with the updated Token. 
 
 When the eMSP is not sure about the state or existence of a Token object in the CPO system, the 
 eMSP can call the [GET](#221-get-method) to validate the Token object in the CPO system.   
@@ -211,7 +211,7 @@ Example endpoint structure:
 `/ocpi/emsp/2.0/tokens/{token_uid}/authorize`
 The `/authorize` is required for the real-time authorize request.
 
-When the eMSP receives a 'real-time' authorization request from a CPO that contains to little information (no LocationReferences provided) to determine if the Token might be used, the eMSP SHOULD respond with the OCPI status: [2002](status_codes.md#2xxx-client-errors) 
+When the eMSP receives a 'real-time' authorization request from a CPO that does not contain enought information to determine if the Token might be used (e.g. no LocationReferences provided), the eMSP SHOULD respond with the OCPI status: [2002](status_codes.md#2xxx-client-errors) 
 
 ##### Request Parameters
 
